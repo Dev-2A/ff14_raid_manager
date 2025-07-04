@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-white font-['Noto_Sans_KR'];
+  }
+  
+  /* 스크롤바 커스터마이징 */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-ff14-dark-300;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-ff14-blue-500 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ff14-blue-400;
+  }
+}
+
+@layer components {
+  /* 게임스러운 버튼 스타일 */
+  .btn-game {
+    @apply px-6 py-3 bg-gradient-game text-white font-semibold rounded-lg
+           shadow-game transition-all duration-200 transform
+           hover:scale-105 hover:shadow-xl active:scale-95;
+  }
+  
+  .btn-gold {
+    @apply px-6 py-3 bg-gradient-gold text-ff14-dark-500 font-bold rounded-lg
+           shadow-gold transition-all duration-200 transform
+           hover:scale-105 hover:shadow-xl active:scale-95;
+  }
+  
+  /* 카드 스타일 */
+  .card-game {
+    @apply bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl
+           border border-ff14-blue-700 shadow-game p-6
+           transition-all duration-300 hover:shadow-xl;
+  }
+  
+  /* 입력 필드 스타일 */
+  .input-game {
+    @apply w-full px-4 py-3 bg-ff14-dark-200 border border-ff14-blue-700
+           rounded-lg text-white placeholder-gray-400
+           focus:outline-none focus:border-ff14-blue-400 focus:ring-2 
+           focus:ring-ff14-blue-400/50 transition-all duration-200;
+  }
+  
+  /* 제목 스타일 */
+  .title-game {
+    @apply text-3xl font-bold bg-gradient-to-r from-ff14-blue-400 to-ff14-gold-500
+           bg-clip-text text-transparent font-game;
+  }
+  
+  /* 아이템 등급별 색상 */
+  .item-normal {
+    @apply border-gray-400 bg-gray-400/10;
+  }
+  
+  .item-savage {
+    @apply border-purple-500 bg-purple-500/10;
+  }
+  
+  .item-tome {
+    @apply border-blue-500 bg-blue-500/10;
+  }
+  
+  .item-augmented {
+    @apply border-ff14-gold-500 bg-ff14-gold-500/10;
+  }
+  
+  .item-crafted {
+    @apply border-green-500 bg-green-500/10;
+  }
+  
+  .item-extreme {
+    @apply border-orange-500 bg-orange-500/10;
+  }
+}
+
+@layer utilities {
+  /* 애니메이션 효과 */
+  .animate-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* 직업 역할별 색상 */
+  .role-tank {
+    @apply text-blue-400 bg-blue-400/20;
+  }
+  
+  .role-healer {
+    @apply text-green-400 bg-green-400/20;
+  }
+  
+  .role-dps {
+    @apply text-red-400 bg-red-400/20;
+  }
+}
