@@ -1,4 +1,0 @@
-*.txt text encoding=UTF-8
-*.py text encoding=UTF-8
-*.md text encoding=UTF-8
-*.bat text encoding=UTF-8 eol=crlf
