@@ -22,15 +22,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // 동적으로 navigation 배열 생성 - 수정된 부분
   const navigation = [
     { name: '홈', href: '/', icon: HomeIcon },
     { name: '공대', href: '/parties', icon: UserGroupIcon },
     { name: '프로필', href: '/profile', icon: UserIcon },
+    ...(user?.is_admin ? [{ name: '관리자', href: '/admin', icon: Cog6ToothIcon }] : [])
   ];
-
-  if (user?.is_admin) {
-    navigation.push({ name: '관리자', href: '/admin', icon: Cog6ToothIcon });
-  }
 
   const isActive = (path: string) => {
     return location.pathname === path || location.pathname.startsWith(path + '/');
@@ -87,6 +85,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div className="text-sm">
                 <p className="text-gray-400">접속중인 모험가</p>
                 <p className="text-ff14-gold-500 font-semibold">{user?.username}</p>
+                {user?.is_admin && (
+                  <p className="text-xs text-purple-400 mt-0.5">관리자</p>
+                )}
               </div>
               <button
                 onClick={logout}
@@ -142,6 +143,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <div>
                     <p className="text-xs text-gray-400">접속중인 모험가</p>
                     <p className="text-ff14-gold-500 font-semibold">{user?.username}</p>
+                    {user?.is_admin && (
+                      <p className="text-xs text-purple-400 mt-0.5">관리자</p>
+                    )}
                   </div>
                   <button
                     onClick={logout}

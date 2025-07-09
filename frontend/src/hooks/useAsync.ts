@@ -6,24 +6,18 @@ interface AsyncState<T> {
   error: Error | null;
 }
 
-interface UseAsyncOptions {
-  immediate?: boolean;
-}
-
 export function useAsync<T = any>(
   asyncFunction: () => Promise<T>,
-  options: UseAsyncOptions = {}
+  deps: any[] = []
 ) {
-  const { immediate = true } = options;
-  
   const [state, setState] = useState<AsyncState<T>>({
     data: null,
-    loading: immediate,
+    loading: true,
     error: null,
   });
 
   const execute = useCallback(async () => {
-    setState(prev => ({ ...prev, loading: true, error: null }));
+    setState({ data: null, loading: true, error: null });
     
     try {
       const data = await asyncFunction();
@@ -34,13 +28,11 @@ export function useAsync<T = any>(
       setState({ data: null, loading: false, error: err });
       throw err;
     }
-  }, [asyncFunction]);
+  }, deps);
 
   useEffect(() => {
-    if (immediate) {
-      execute();
-    }
-  }, [execute, immediate]);
+    execute();
+  }, [execute]);
 
   return {
     ...state,

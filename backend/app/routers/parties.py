@@ -436,7 +436,7 @@ async def get_party_statistics(
         "created_at": party.created_at
     }
 
-@router.get("/{party_id}/jobs")
+@router.get("/{party_id}/jobs", response_model=schemas.AvailableJobsResponse)
 async def get_available_jobs(
     party_id: int,
     current_user: models.User = Depends(get_current_active_user),
@@ -472,11 +472,16 @@ async def get_available_jobs(
             if total_dps < 4:
                 available_jobs.append(job)
     
-    return {
-        "available_jobs": available_jobs,
-        "current_composition": {
-            "tanks": role_counts.get(models.RoleEnum.TANK, 0),
-            "healers": role_counts.get(models.RoleEnum.HEALER, 0),
-            "dps": total_dps
-        }
-    }
+    # JobResponse 스키마로 변환
+    available_jobs_response = [
+        schemas.JobResponse.model_validate(job) for job in available_jobs
+    ]
+    
+    return schemas.AvailableJobsResponse(
+        available_jobs=available_jobs_response,
+        current_composition=schemas.JobComposition(
+            tanks=role_counts.get(models.RoleEnum.TANK, 0),
+            healers=role_counts.get(models.RoleEnum.HEALER, 0),
+            dps=total_dps
+        )
+    )

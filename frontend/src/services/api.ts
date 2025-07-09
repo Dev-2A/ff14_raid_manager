@@ -26,8 +26,8 @@ import {
   ItemTypeEnum
 } from '../types/api.types';
 
-// API 기본 URL 설정
-const API_BASE_URL = 'http://localhost:8000/api';
+// API 기본 URL 설정 (환경변수 또는 기본값 사용)
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
 // axios 인스턴스 생성
 const api: AxiosInstance = axios.create({

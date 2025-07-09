@@ -128,7 +128,7 @@ def get_parties(
         )
     
     if is_active is not None:
-        query = query.filter(models.party.is_active == is_active)
+        query = query.filter(models.Party.is_active == is_active)
     
     return query.offset(skip).limit(limit).all()
 

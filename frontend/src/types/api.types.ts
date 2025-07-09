@@ -232,3 +232,8 @@ export interface UserCharacter {
   job_role: RoleEnum;
   joined_at: string;
 }
+
+export interface CreateRaidRequest {
+  name: string;
+  patch_number: string;
+}

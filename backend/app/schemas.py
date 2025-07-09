@@ -276,3 +276,15 @@ class SetComparison(BaseModel):
     current_to_start: CurrencyRequirement
     start_to_final: CurrencyRequirement
     current_to_final: CurrencyRequirement
+
+#SECTION - 공대 가입 가능 직업 관련 스키마
+class JobComposition(BaseModel):
+    """공대 구성 현황"""
+    tanks: int
+    healers: int
+    dps: int
+
+class AvailableJobsResponse(BaseModel):
+    """가입 가능한 직업 목록 응답"""
+    available_jobs: List[JobResponse]
+    current_composition: JobComposition

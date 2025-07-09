@@ -1,0 +1,74 @@
+# ===== 공통 =====
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 환경 변수
+.env
+.env.local
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 임시 파일
+*.tmp
+*.bak
+*.temp
+.~*
+
+# 로그
+*.log
+logs/
+
+# ===== 백엔드 (Python) =====
+# Python
+backend/__pycache__/
+backend/*.py[cod]
+backend/*$py.class
+backend/*.so
+backend/.Python
+backend/venv/
+backend/env/
+backend/ENV/
+backend/.venv
+
+# 데이터베이스
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/data/
+
+# 테스트
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+
+# 배포
+backend/dist/
+backend/build/
+backend/*.egg-info/
+
+# ===== 프론트엔드 (React/Node.js) =====
+# dependencies
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.js
+
+# testing
+frontend/coverage/
+
+# production
+frontend/build/
+
+# debug
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
